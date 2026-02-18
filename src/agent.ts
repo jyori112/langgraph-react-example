@@ -33,7 +33,7 @@ import { SYSTEM_PROMPT } from "./prompts.js";
 export const agent = createAgent({
   // The model to use - supports "provider:model" format
   // Uses ANTHROPIC_API_KEY or OPENAI_API_KEY from environment
-  model: "anthropic:claude-haiku-4-5",
+  model: "openai:gpt-4.1-nano",
 
   // Tools available to the agent
   tools: TOOLS,
