@@ -51,4 +51,4 @@ export const agent = createAgent({
   //     interruptOn: { sensitive_tool: { allowedDecisions: ["approve", "reject"] } },
   //   }),
   // ],
-});
+}).graph;
