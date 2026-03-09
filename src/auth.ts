@@ -7,6 +7,8 @@ export const auth = (new Auth()).authenticate(async function () {
     permissions: []
   };
 }).on('*:create_run', async ({ value }) => {
+  console.log('Intercepted create_run event in auth middleware with value:', value);
+
   value.metadata = {
     ...value.metadata,
     custom: 'metadata',

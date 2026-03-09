@@ -10,20 +10,25 @@ export const agent = createAgent({
     createMiddleware({
       name: "LoggingMiddleware",
       wrapModelCall: async (request, handler) => {
+        console.log("wrapModelCall runtime:", request.runtime);
         console.log("wrapModelCall context:", request.runtime.context);
         return handler(request);
       },
-      beforeAgent: async (request) => {
-        console.log("beforeAgent context:", request.runtime.context);
+      beforeAgent: async (_state, runtime) => {
+        console.log("beforeAgent runtime:", runtime);
+        console.log("beforeAgent context:", runtime.context);
       },
-      afterAgent: async (request) => {
-        console.log("afterAgent context:", request.runtime.context);
+      afterAgent: async (_state, runtime) => {
+        console.log("afterAgent runtime:", runtime);
+        console.log("afterAgent context:", runtime.context);
       },
-      beforeModel: async (request) => {
-        console.log("beforeModel context:", request.runtime.context);
+      beforeModel: async (_state, runtime) => {
+        console.log("beforeModel runtime:", runtime);
+        console.log("beforeModel context:", runtime.context);
       },
-      afterModel: async (request) => {
-        console.log("afterModel context:", request.runtime.context);
+      afterModel: async (_state, runtime) => {
+        console.log("afterModel runtime:", runtime);
+        console.log("afterModel context:", runtime.context);
       },
     })
   ]
