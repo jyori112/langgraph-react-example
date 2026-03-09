@@ -1,14 +1,22 @@
 import { createAgent, createMiddleware } from "langchain";
 import { TOOLS } from "./tools.js";
 import { SYSTEM_PROMPT } from "./prompts.js";
+import { z } from "zod";
+
+const ContextSchema = z.object({
+  auth: z.string(),
+  client: z.string(),
+});
 
 export const agent = createAgent({
   model: "openai:gpt-4.1-nano",
   tools: TOOLS,
   systemPrompt: SYSTEM_PROMPT,
+  contextSchema: ContextSchema,
   middleware: [
     createMiddleware({
       name: "LoggingMiddleware",
+      contextSchema: ContextSchema,
       wrapModelCall: async (request, handler) => {
         console.log("wrapModelCall runtime:", request.runtime);
         console.log("wrapModelCall context:", request.runtime.context);

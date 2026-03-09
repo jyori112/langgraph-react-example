@@ -11,11 +11,11 @@ export const auth = (new Auth()).authenticate(async function () {
 
   value.metadata = {
     ...value.metadata,
-    custom: 'metadata',
+    auth: 'metadata',
   }
   value.kwargs.context = {
     ...value.kwargs.context as object,
-    custom: 'context',
+    auth: 'context',
   }
 
   return true;
