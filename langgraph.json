@@ -5,5 +5,8 @@
   "graphs": {
     "agent": "./src/agent.ts:agent"
   },
+  "auth": {
+    "path": "./src/auth.ts:auth"
+  },
   "env": ".env"
 }
