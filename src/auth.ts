@@ -7,15 +7,12 @@ export const auth = (new Auth()).authenticate(async function () {
     permissions: []
   };
 }).on('*:create_run', async ({ value }) => {
-  console.log('Intercepted create_run event in auth middleware with value:', value);
+  console.log('Intercepted create_run event in auth middleware with input:', value.kwargs.input);
+  const input = value.kwargs.input;
 
-  value.metadata = {
-    ...value.metadata,
-    auth: 'metadata',
-  }
-  value.kwargs.context = {
-    ...value.kwargs.context as object,
-    auth: 'context',
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if ((input as any)?.userId !== 'secret_user_id') {
+    throw new Error('Unauthorized: Invalid userId');
   }
 
   return true;
