@@ -6,7 +6,7 @@ import { z } from "zod";
 const ContextSchema = z.object({
   auth: z.string(),
   client: z.string(),
-});
+}).partial();
 
 export const agent = createAgent({
   model: "openai:gpt-4.1-nano",
